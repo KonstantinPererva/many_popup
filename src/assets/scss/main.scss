@@ -1,0 +1,21 @@
+//@import "utils/vars";
+//@import "utils/mixins";
+//@import "utils/normalize";
+//@import "utils/reset";
+//@import "utils/fonts";
+@import "utils/base";
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  &:after, &:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+
+@import "../css/style.css";
+@import "popup/popup";

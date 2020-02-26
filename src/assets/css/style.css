@@ -1,0 +1,56 @@
+nav {
+    margin: 30px 0;
+}
+.card {
+    width: 200px;
+    height: 300px;
+    background: #fff;
+    border: 1px solid #ddd;
+    transition: .2s;
+    margin: 0 6px 12px;
+    overflow: hidden;
+}
+
+.card.active {
+    box-shadow: 0 0 6px rgba(0,0,0,.5);
+}
+
+.list-goods {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+img {
+    display: block;
+    width: 100%;
+    transition: .2s;
+}
+
+img.active {
+    transform: scale(1.05, 1.05);
+}
+
+.title {
+    text-align: center;
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 16px;
+    color: #159;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    margin: 10px 0;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.price {
+    font-size: 16px;
+    line-height: 16px;
+    color: #951;
+    font-weight: bold;
+    padding: 0 10px;
+    font-family: Arial, sans-serif;
+}
