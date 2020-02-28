@@ -1,58 +1,58 @@
 export default class PopupTab {
-    constructor(option) {
-        let {position, transition, width, height} = option;
+    constructor(option,data) {
+        let {position, transition, width, height, parent, background} = option;
+        this.data = data || "### content ###";
         this.position = position || "";
-        this.transition = transition + "ms" || "";
+        this.transition = transition || "";
         this.width = width || "";
         this.height = height || "";
-    }
-
-    parametersPopupTab() {
-        this.node.style.width = this.width;
-        this.node.style.height = this.height;
-        this.node.style.transition = this.transition;
-    }
-
-    positionPopupTab() {
-        if (this.position === "left") {
-            this.node.classList.add('position-left');
+        this.background = background || "#ffffff";
+        let {tab, btnClose} = this.renderPopupTab();
+        this.node = tab;
+        this.btnClose = btnClose;
+        this.parent = parent || null;
+        try {
+            this.parent.appendChild(this.node);
+        } catch (e) {
+            console.log(e)
         }
 
-        if (this.position === "right") {
-            this.node.classList.add('position-right');
-        }
+        this.closePopupTab = this.closePopupTab.bind(this);
+        this.btnClose.addEventListener('click', this.closePopupTab);
 
-        if (this.position === "top") {
-            this.node.classList.add('position-top');
-        }
-
-        if (this.position === "center") {
-            this.node.classList.add('position-center');
-        }
     }
 
     openPopupTab() {
-        this.node.classList.add('open')
+        setTimeout(() => {
+            this.node.classList.add('open');
+        },0);
     }
 
     closePopupTab() {
-        this.node.classList.remove('open')
+        this.node.classList.remove('open');
+        setTimeout(() => this.node.remove(), this.transition);
     }
 
-    render() {
+    renderPopupTab() {
         let tab = document.createElement('div');
         tab.classList.add('popup-tab');
-        this.node = tab;
+        tab.classList.add('position-' + this.position);
+        tab.style.width = this.width;
+        tab.style.height = this.height;
+        tab.style.transition = this.transition + "ms";
+        tab.style.background = this.background;
 
         let btnClose = document.createElement('button');
         btnClose.classList.add('button-close-popup-tab');
+        btnClose.innerHTML = "x";
 
         let content = document.createElement('div');
         content.classList.add('popup-tab-content');
+        content.innerHTML = this.data;
 
         tab.appendChild(btnClose);
         tab.appendChild(content);
 
-        return this.node;
+        return {tab, btnClose};
     }
 }
