@@ -13,6 +13,15 @@ export default class WrapperForTabs extends Wrapper {
         console.log(this.node);
     }
 
+    addTab() {
+        this.listTab.forEach(fn => {
+            let tab = fn();
+            console.log(tab);
+            tab.renderPopupTab();
+            this.node.appendChild(tab);
+        });
+    }
+
     closeWrapperForTabs() {
         this.substrate.classList.remove('open');
         this.listTab.forEach(function (tab) {
@@ -25,8 +34,6 @@ export default class WrapperForTabs extends Wrapper {
     openWrapperForTabs() {
         this.openWrapper();
 
-        this.listTab.forEach(fn => {
-            fn(this.node);
-        });
+        this.addTab();
     }
 }

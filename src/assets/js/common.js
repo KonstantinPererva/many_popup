@@ -60,42 +60,35 @@ function openTabTemplate_3(parent) {
     return tab;
 }
 
-function openTabGallery(parent) {
+function openTabGallery() {
     let tab = new Gallery(
         {
             position: "center",
             transition: 400,
             width: "500px",
             height: "400px",
-            background: 'rgba(194,255,205,1)',
-            parent: parent
+            background: 'rgba(194,255,205,1)'
         },
 
         data_gallery
     );
 
-    tab.openPopupTab()
-
-    ;return tab;
+    return tab;
 }
 
 function openPopup() {
     let arg = [...arguments];
 
-    new Promise(function (resolve, reject) {
-        let wrapper = new WrapperForTabs(
-            {
-                transition: 400,
-                background: 'rgba(0,0,0,.5)'
-            },
+    let wrapper = new WrapperForTabs(
+        {
+            transition: 400,
+            background: 'rgba(0,0,0,.5)'
+        },
 
-            arg
-        );
+        arg
+    );
 
-        resolve(wrapper);
-    }).then(wrapper => {
-        wrapper.openWrapperForTabs();
-    });
+    wrapper.openWrapperForTabs();
 }
 
 export {openTabTemplate_1,openTabTemplate_2,openTabTemplate_3,openTabGallery,openPopup};

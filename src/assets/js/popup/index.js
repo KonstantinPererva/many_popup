@@ -1,6 +1,6 @@
 export default class PopupTab {
     constructor(option,data) {
-        let {position, transition, width, height, parent, background} = option;
+        let {position, transition, width, height, background} = option;
         this.data = data || "### content ###";
         this.position = position || "";
         this.transition = transition || "";
@@ -10,16 +10,9 @@ export default class PopupTab {
         let {tab, btnClose} = this.renderPopupTab();
         this.node = tab;
         this.btnClose = btnClose;
-        this.parent = parent || null;
-        try {
-            this.parent.appendChild(this.node);
-        } catch (e) {
-            console.log(e)
-        }
 
         this.closePopupTab = this.closePopupTab.bind(this);
         this.btnClose.addEventListener('click', this.closePopupTab);
-
     }
 
     openPopupTab() {
