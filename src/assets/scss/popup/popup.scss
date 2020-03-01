@@ -42,4 +42,15 @@
       transform: translateX(0);
     }
   }
+
+  &.position-center {
+    right: 0;
+    left: 0;
+    margin: auto;
+    border-radius: 6px;
+
+    &.open {
+      transform: translateX(0);
+    }
+  }
 }

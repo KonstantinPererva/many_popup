@@ -1,6 +1,6 @@
 import PopupTab from "./index";
 
-export default class Template_1 extends PopupTab{
+export default class Gallery extends PopupTab{
     constructor(option) {
         super(option);
         let {position, transition, width, height} = option;
