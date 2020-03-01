@@ -1,43 +1,58 @@
 export default class PopupTab {
-    constructor(option) {
-        let {parent, position, transition, width, height} = option;
-        this.parent = document.querySelector(parent) || null;
+    constructor(option,data) {
+        let {position, transition, width, height, parent, background} = option;
+        this.data = data || "### content ###";
         this.position = position || "";
-        this.transition = transition + "ms" || "";
+        this.transition = transition || "";
         this.width = width || "";
         this.height = height || "";
-        this.parent ? this.parent.appendChild(this.render()) : console.error('No parent selector specified in options');
-        this.node.classList.add('position-' + this.position);
-    }
+        this.background = background || "#ffffff";
+        let {tab, btnClose} = this.renderPopupTab();
+        this.node = tab;
+        this.btnClose = btnClose;
+        this.parent = parent || null;
+        try {
+            this.parent.appendChild(this.node);
+        } catch (e) {
+            console.log(e)
+        }
 
-    parametersPopupTab() {
-        this.node.style.width = this.width;
-        this.node.style.height = this.height;
-        this.node.style.transition = this.transition;
+        this.closePopupTab = this.closePopupTab.bind(this);
+        this.btnClose.addEventListener('click', this.closePopupTab);
+
     }
 
     openPopupTab() {
-        this.node.classList.add('open')
+        setTimeout(() => {
+            this.node.classList.add('open');
+        },0);
     }
 
     closePopupTab() {
-        this.node.classList.remove('open')
+        this.node.classList.remove('open');
+        setTimeout(() => this.node.remove(), this.transition);
     }
 
-    render() {
+    renderPopupTab() {
         let tab = document.createElement('div');
         tab.classList.add('popup-tab');
-        this.node = tab;
+        tab.classList.add('position-' + this.position);
+        tab.style.width = this.width;
+        tab.style.height = this.height;
+        tab.style.transition = this.transition + "ms";
+        tab.style.background = this.background;
 
         let btnClose = document.createElement('button');
         btnClose.classList.add('button-close-popup-tab');
+        btnClose.innerHTML = "x";
 
         let content = document.createElement('div');
         content.classList.add('popup-tab-content');
+        content.innerHTML = this.data;
 
         tab.appendChild(btnClose);
         tab.appendChild(content);
 
-        return this.node;
+        return {tab, btnClose};
     }
 }
