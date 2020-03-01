@@ -4,7 +4,9 @@ let btn = document.querySelector('.button-open-popup');
 let btnOpenRightPopup = document.querySelector('.button-open-popup-right');
 
 btn.addEventListener('click', function () {
-    openPopup(openTabGallery);
+   let popup = openPopup(openTabGallery);
+    popup.openWrapperForTabs();
+    popup.addNewTab(openTabTemplate_3);
 });
 
 btnOpenRightPopup.addEventListener('click', function () {

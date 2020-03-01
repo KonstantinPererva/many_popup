@@ -4,6 +4,7 @@ export default class Wrapper {
         this.listTab = listTab;
         this.transition = transition || "";
         this.background = background || "rgba(0,0,0,.35)";
+        this.renderWrapper = this.renderWrapper.bind(this);
         let {wrapper, substrate} = this.renderWrapper();
         this.node = wrapper;
         this.substrate = substrate;
